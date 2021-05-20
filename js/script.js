@@ -60,6 +60,8 @@ const validateInput = function (inputValue) {
     }
 };
 
+//function to accept the validated, validate it is a new letter and add it to the guessedLettersArray
+
 const makeGuess = function (letter) {
     letter = letter.toUpperCase();
     console.log(letter);
@@ -68,8 +70,18 @@ const makeGuess = function (letter) {
         letterInput.value = "";
     } else {
         guessedLettersArray.push(letter);
+        showGuessedLetter(letter);
     }
     console.log(guessedLettersArray);
+}
+
+//function to show the guessed letters
+const showGuessedLetter = function (letter) {
+    // guessedLetters.innerHTML = "";
+    let li = document.createElement("li");
+    li.innerHTML = `${letter}`;
+    guessedLetters.appendChild(li);
+    letterInput.value = "";
 }
 
 

@@ -29,16 +29,16 @@ const createLetterPlaceholders = function (word) {
         wordArray.push(`●`);
     }
     wordInProgress.innerText = wordArray.join("");
-
+    console.log(`Original Word Array(wordArray): ${wordArray}`);
 };
 
 createLetterPlaceholders(word);
+guessedLetters.innerHTML = "";
 
 //guess button event listern
 guessButton.addEventListener("click", function (e){
     e.preventDefault();
     const inputValue = letterInput.value;
-    // console.log(inputValue);
     validateInput(inputValue);
 });
 
@@ -64,7 +64,6 @@ const validateInput = function (inputValue) {
 
 const makeGuess = function (letter) {
     letter = letter.toUpperCase();
-    console.log(letter);
     if (guessedLettersArray.includes(letter)) {
         messageToPlayer.innerText = "You already guessed that letter. Try again";
         letterInput.value = "";
@@ -72,18 +71,45 @@ const makeGuess = function (letter) {
         guessedLettersArray.push(letter);
         showGuessedLetter(letter);
     }
-    console.log(guessedLettersArray);
+    console.log(`Answer Word (word): ${word}`);
+    console.log(`Guessed letters array(guessedLettersArray): ${guessedLettersArray}`);
+    updatedWordInProgress(guessedLettersArray);
 }
 
 //function to show the guessed letters
 const showGuessedLetter = function (letter) {
-    // guessedLetters.innerHTML = "";
     let li = document.createElement("li");
     li.innerHTML = `${letter}`;
-    guessedLetters.appendChild(li);
+    guessedLetters.append(li);
     letterInput.value = "";
 }
 
+//function to update the word in progress
+
+const updatedWordInProgress = function (array) {
+    let wordUpper = word.toUpperCase();
+    const wordArray = wordUpper.split("");
+    console.log(`Word Array(wordArray): ${wordArray}`);
+    const inProgressWordArray = [];
+    for (let key in array){
+        console.log(key, array[key]);
+        console.log(wordArray.includes(array[key]));
+        if (wordArray.includes(array[key])) {
+            for(let each of wordArray) {
+                if (each === array[key]){
+                    inProgressWordArray.push(array[key]);
+                }
+                else {
+                    inProgressWordArray.push(`●`);
+                }
+            }
+        }
+    };
+    console.log(`In Progress Word Array: ${inProgressWordArray}`)
+    // wordInProgress.innerText = inProgressWordArray.join("");
+
+
+    };
 
 
 

@@ -18,6 +18,11 @@ const playAgainButton = document.querySelector("play-again");
 //Starting word to test out the game
 const word = "magnolia";
 
+//Guess letters array
+const guessedLettersArray = [];
+
+
+//function to creat placeholders for each letter in the word
 const createLetterPlaceholders = function (word) {
     const wordArray = [];
     for (let letter of word){
@@ -29,11 +34,48 @@ const createLetterPlaceholders = function (word) {
 
 createLetterPlaceholders(word);
 
+//guess button event listern
 guessButton.addEventListener("click", function (e){
     e.preventDefault();
     const inputValue = letterInput.value;
-    console.log(inputValue);
+    // console.log(inputValue);
+    validateInput(inputValue);
 });
+
+//function to validate letter guess
+const validateInput = function (inputValue) {
+    const acceptedLetter = /[a-zA-Z]/;
+    if(inputValue === ""){
+        messageToPlayer.innerText = "You need to input A letter";
+    }
+    else if (inputValue.length > 1) {
+        messageToPlayer.innerText = "You need to input ONE letter";
+        letterInput.value = "";
+    }
+    else if (!inputValue.match(acceptedLetter)) {
+        messageToPlayer.innerText = "You need to input ONE ACUTAL letter";
+        letterInput.value = "";
+    } else {
+        makeGuess(inputValue);
+    }
+};
+
+const makeGuess = function (letter) {
+    letter = letter.toUpperCase();
+    console.log(letter);
+    if (guessedLettersArray.includes(letter)) {
+        messageToPlayer.innerText = "You already guessed that letter. Try again";
+        letterInput.value = "";
+    } else {
+        guessedLettersArray.push(letter);
+    }
+    console.log(guessedLettersArray);
+}
+
+
+
+
+
 
 
 

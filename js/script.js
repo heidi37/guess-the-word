@@ -29,7 +29,7 @@ const createLetterPlaceholders = function (word) {
         placeholderLetters.push(`●`);
     }
     wordInProgress.innerText = placeholderLetters.join("");
-    console.log(`Placeholder letters: ${placeholderLetters}`);
+    // console.log(`Placeholder letters: ${placeholderLetters}`);
 };
 
 createLetterPlaceholders(word);
@@ -74,8 +74,6 @@ const makeGuess = function (letter) {
         guessedLettersArray.push(letter);
         showGuessedLetter(letter);
     }
-    console.log(`Answer Word (word): ${word}`);
-    console.log(`Guessed letters array(guessedLettersArray): ${guessedLettersArray}`);
     updatedWordInProgress(guessedLettersArray);
 }
 
@@ -92,13 +90,13 @@ const showGuessedLetter = function (letter) {
 const updatedWordInProgress = function (array) {
     let wordUpper = word.toUpperCase();
     const wordArray = wordUpper.split("");
-    console.log(`GUESSED LETTERS ARRAY: ${array}`);
-    console.log(`WORD ARRAY: ${wordArray}`);
+    // console.log(`GUESSED LETTERS ARRAY: ${array}`);
+    // console.log(`WORD ARRAY: ${wordArray}`);
     const inProgressWordArray = [];
     wordArray.forEach( function (element, index){
             if (array.includes(element)) {
                 inProgressWordArray.push(element);
-                console.log(`IN PROGRESS ARRAY: ${inProgressWordArray}`)
+                // console.log(`IN PROGRESS ARRAY: ${inProgressWordArray}`)
             }
                 else {
                     inProgressWordArray.push(`●`);
@@ -107,8 +105,19 @@ const updatedWordInProgress = function (array) {
 
     
     wordInProgress.innerText = inProgressWordArray.join("");
+    playerWon(wordArray, inProgressWordArray);
 
 };
+
+//function to check if player won
+
+const playerWon = function (arrayOne, arrayTwo) {
+    console.log(arrayOne.join());
+    console.log(arrayTwo.join());
+    if (arrayOne.join() === arrayTwo.join()){
+        messageToPlayer.innerHTML = `<p class="highlight">You guessed correct the word! Congrats!</p>`;
+    }
+}
 
 
 

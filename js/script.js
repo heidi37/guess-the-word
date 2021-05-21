@@ -158,6 +158,8 @@ playAgainButton.addEventListener("click", function () {
     getWord();
 });
 
+//comment
+
 
 
 

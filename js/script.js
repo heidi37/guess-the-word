@@ -1,3 +1,6 @@
+//footer copyright dynamic year
+document.getElementById("copyrightYear").innerText = new Date().getFullYear();
+
 //The unordered list where the player's guessed letters will appear
 const guessedLetters = document.querySelector(".guessed-letters");
 //The button with the text "Guess!" in it
@@ -44,10 +47,10 @@ const createLetterPlaceholders = function (word) {
     wordInProgress.innerText = placeholderLetters.join("");
 };
 
-//should this go here?
+//guessed letters
 guessedLetters.innerHTML = "";
 
-//guess button event listern
+//guess button event listener
 guessButton.addEventListener("click", function (e){
     e.preventDefault();
     messageToPlayer.innerText = "";
@@ -157,11 +160,3 @@ playAgainButton.addEventListener("click", function () {
     playAgainButton.classList.add("hide");
     getWord();
 });
-
-
-
-
-
-
-
-

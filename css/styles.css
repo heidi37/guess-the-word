@@ -4,8 +4,9 @@
 
 body {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   margin: 0;
   font-family: "Open Sans", sans-serif;
   font-style: normal;
@@ -16,6 +17,7 @@ body {
   background-size: 800px;
   background-repeat: repeat;
   color: #305050;
+  height: 100vh;
 }
 
 .logo {
@@ -74,6 +76,10 @@ h1 {
 .guessed-letters li {
   display: inline-block;
   padding: 0 0.5em;
+}
+
+p.remaining {
+  text-align: center;
 }
 
 .message {
@@ -153,5 +159,37 @@ input:focus {
 
   100% {
     background-position: 0% 50%;
+  }
+}
+
+footer {
+  width: 100%;
+  padding: 0.5rem 0;
+  background: #3050500f;
+}
+
+footer p, footer small {
+  text-align: center;
+}
+
+footer a {
+  color: #39457b;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+footer .fa-terminal{
+  animation: terminal-animate 1.5s infinite;
+}
+
+@keyframes terminal-animate {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
